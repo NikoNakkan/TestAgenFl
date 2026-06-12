@@ -1,0 +1,130 @@
+openapi: 3.1.0
+info:
+  title: test-project-agentic-flow API
+  version: 0.1.0
+paths:
+  /health:
+    get:
+      operationId: getHealth
+      summary: Liveness check
+      responses:
+        "200":
+          description: Service is up
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthResponse"
+  /api/info:
+    get:
+      operationId: getInfo
+      summary: Application metadata
+      responses:
+        "200":
+          description: App name and version
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InfoResponse"
+  /api/saved-time:
+    get:
+      operationId: getSavedTime
+      summary: Read persisted saved time (ISO 8601)
+      responses:
+        "200":
+          description: Current saved time or null if never saved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SavedTimeResponse"
+    put:
+      operationId: setSavedTime
+      summary: Persist saved time (ISO 8601)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SavedTimeRequest"
+      responses:
+        "200":
+          description: Updated saved time
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SavedTimeResponse"
+  /api/toggle-state:
+    get:
+      operationId: getToggleState
+      summary: Read persisted true/false toggle state
+      responses:
+        "200":
+          description: Current boolean state
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ToggleStateResponse"
+    put:
+      operationId: setToggleState
+      summary: Persist true/false toggle state
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ToggleStateRequest"
+      responses:
+        "200":
+          description: Updated state
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ToggleStateResponse"
+components:
+  schemas:
+    HealthResponse:
+      type: object
+      required: [status]
+      properties:
+        status:
+          type: string
+          example: ok
+    InfoResponse:
+      type: object
+      required: [name, version]
+      properties:
+        name:
+          type: string
+          example: test-project-agentic-flow
+        version:
+          type: string
+          example: 0.1.0
+    SavedTimeRequest:
+      type: object
+      required: [value]
+      properties:
+        value:
+          type: string
+          format: date-time
+          example: "2026-06-11T14:30:00.000Z"
+    SavedTimeResponse:
+      type: object
+      required: [value]
+      properties:
+        value:
+          type: [string, "null"]
+          format: date-time
+          example: "2026-06-11T14:30:00.000Z"
+    ToggleStateRequest:
+      type: object
+      required: [value]
+      properties:
+        value:
+          type: boolean
+          example: true
+    ToggleStateResponse:
+      type: object
+      required: [value]
+      properties:
+        value:
+          type: boolean
+          example: false

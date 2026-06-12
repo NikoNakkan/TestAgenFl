@@ -1,0 +1,52 @@
+.flow-dialog {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  padding: 0.75rem 1rem;
+  border-radius: 0.85rem;
+  border: 1px solid transparent;
+  margin-bottom: 1.25rem;
+  transition:
+    background 220ms ease,
+    border-color 220ms ease;
+}
+
+.flow-dialog__header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.flow-dialog__dot {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.flow-dialog__title {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.flow-dialog--active {
+  color: #064e3b;
+  background: rgba(255, 255, 255, 0.85);
+  border-color: #6ee7b7;
+}
+
+.flow-dialog--active .flow-dialog__dot {
+  background: #10b981;
+}
+
+.flow-dialog--idle {
+  color: #334155;
+  background: rgba(255, 255, 255, 0.85);
+  border-color: #cbd5e1;
+}
+
+.flow-dialog--idle .flow-dialog__dot {
+  background: #94a3b8;
+}

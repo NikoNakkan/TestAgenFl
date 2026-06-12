@@ -1,0 +1,74 @@
+.app-shell {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  max-width: 28rem;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  color: #0f172a;
+  text-align: left;
+  transition: background 280ms ease;
+}
+
+.app-header h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.app-version {
+  margin: 0 0 1.5rem;
+  font-size: 0.875rem;
+  color: #475569;
+}
+
+.app-error {
+  margin: 0 0 1rem;
+  color: #b91c1c;
+  font-size: 0.9rem;
+}
+
+.app-shell--flow-idle {
+  background: linear-gradient(160deg, #e2e8f0 0%, #f8fafc 45%, #cbd5e1 100%);
+}
+
+.app-shell--flow-active {
+  background: linear-gradient(160deg, #a7f3d0 0%, #ecfdf5 50%, #6ee7b7 100%);
+}
+
+.demo-panel {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(6px);
+}
+
+.demo-panel h2 {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.toggle-emoji {
+  font-size: 2.5rem;
+  line-height: 1;
+  transition: transform 180ms ease;
+}
+
+.toggle-row:has(.base-button--true) .toggle-emoji {
+  transform: scale(1.08);
+}
+
+.state-readout {
+  margin: 1rem 0 0;
+  font-size: 0.95rem;
+  color: #475569;
+}

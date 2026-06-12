@@ -1,0 +1,14 @@
+---
+description: Run code index refresh after adding or changing exports; fix purpose gaps in docs/context/
+alwaysApply: true
+---
+
+# Code index — always refresh after exports
+
+When you add, change, or remove **exported** symbols in `apps/web-react` or `apps/api`:
+
+1. Run: `python scripts/code_index_refresh.py --repo .` (must exit 0)
+2. If validate fails with `missing human purpose`, add `purpose` in the correct `docs/context/*.md` file — see [CODE-INDEX.md](docs/context/CODE-INDEX.md)
+3. Confirm: `python scripts/code_index_query.py --repo . missing_tests` returns `[]`
+
+**Never skip this** at the end of a feature task. The catalog lives in `.code-index/graph.db`; context rows live in `docs/context/`.

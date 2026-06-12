@@ -1,0 +1,64 @@
+task_id: TASK-002
+goal: "BaseButton true/false toggle persisted to SQLite"
+phase: done
+current_step: 7
+plan_file: docs/working/TASK-002/plan.md
+run_log: docs/working/TASK-002/run-log.md
+created_at: "2026-06-11"
+updated_at: "2026-06-11"
+completed_at: "2026-06-11"
+
+steps:
+  - id: 1
+    agent: navigator
+    status: done
+    files_read: [".code-index/graph.db", "docs/context/INDEX.md"]
+    files_written: ["docs/working/TASK-002/findings.md"]
+    notes: "No existing BaseButton"
+
+  - id: 2
+    agent: be-api-contract
+    status: done
+    files_written: ["packages/contract/openapi.yaml"]
+
+  - id: 3
+    agent: be-dev
+    status: done
+    files_written:
+      - apps/api/src/db.py
+      - apps/api/src/services/toggle_state.py
+      - apps/api/src/routes/toggle_state.py
+      - apps/api/src/main.py
+
+  - id: 4
+    agent: be-testing-agent
+    status: done
+    files_written: [apps/api/tests/test_toggle_state.py, apps/api/tests/test_db.py]
+    notes: "8 pytest passed"
+
+  - id: 5
+    agent: fe-dev
+    status: done
+    files_written:
+      - apps/web-react/src/components/BaseButton/BaseButton.tsx
+      - apps/web-react/src/components/BaseButton/BaseButton.css
+      - apps/web-react/src/hooks/useToggleState.ts
+      - apps/web-react/src/api/toggleState.ts
+      - apps/web-react/src/App.tsx
+
+  - id: 6
+    agent: fe-testing-agent
+    status: done
+    files_written:
+      - apps/web-react/src/components/BaseButton/BaseButton.test.tsx
+      - apps/web-react/src/hooks/useToggleState.test.ts
+      - apps/web-react/src/api/toggleState.test.ts
+    notes: "8 vitest passed"
+
+  - id: 7
+    agent: index-curator
+    status: done
+    notes: "32 symbols; missing_tests 0"
+
+blocker: ""
+human_gate: false

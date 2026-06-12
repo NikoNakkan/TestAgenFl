@@ -1,0 +1,11 @@
+task_id: TASK-003
+goal: "Flow dialog + background by toggle state"
+phase: done
+current_step: 4
+completed_at: "2026-06-11"
+
+steps:
+  - { id: 1, agent: navigator, status: done }
+  - { id: 2, agent: fe-dev, status: done }
+  - { id: 3, agent: fe-testing-agent, status: done }
+  - { id: 4, agent: flow-end-validator, status: done, notes: "refresh exit 0; 13 symbols" }

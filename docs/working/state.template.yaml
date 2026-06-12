@@ -1,0 +1,22 @@
+# Orchestrator state — copy to docs/working/<TASK-ID>/state.yaml
+
+task_id: TASK-001
+goal: ""                    # one line from user
+phase: planning             # planning | executing | testing | done | blocked
+current_step: 0
+plan_file: docs/working/TASK-001/plan.md
+created_at: ""
+updated_at: ""
+
+steps:
+  - id: 1
+    agent: navigator
+    status: pending         # pending | in_progress | done | blocked | skipped
+    started_at: ""
+    completed_at: ""
+    notes: ""
+
+  # one entry per row in plan.md — orchestrator fills from plan on first run
+
+blocker: ""                 # set when phase: blocked
+human_gate: false           # true = wait for human approval before next step
