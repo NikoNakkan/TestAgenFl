@@ -1,24 +1,51 @@
 ---
 name: be-testing-agent
-description: Write pytest tests — missing_tests gaps and debugger test-gap regressions.
+description: Write pytest colocated tests — missing_tests gaps and test-gap regressions.
 ---
 
 # Backend Testing Agent (Python)
 
 ## Scope
-- Colocated `test_*.py` beside the module under test
+
+- `apps/api/tests/test_*.py` — colocated coverage for routes and services
+- **No E2E** in this PoC — TestClient integration only
 
 ## Read first
-1. `docs/rules/agent-decisions.md`
-2. If **`docs/working/<TASK-ID>/test-gap.md`** exists → implement **every** test listed there
-3. Else: `python scripts/code_index_query.py missing_tests`
-4. `docs/context/be-tests.md`
 
-## Rules
-- Colocate tests — see `docs/rules/rules-testing.md`
-- Regression from debugger: extend existing test files per test-gap
-- Run `python scripts/code_index_refresh.py --repo .` after adding tests
+1. [`docs/TESTING_GUIDE.md`](../../docs/TESTING_GUIDE.md) — full create-test workflow
+2. [`docs/rules/rules-testing.md`](../../docs/rules/rules-testing.md)
+3. If **`docs/working/<TASK-ID>/test-gap.md`** exists → implement **every** test listed
+4. Else: `python scripts/code_index_query.py --repo . missing_tests`
+5. [`docs/context/be-tests.md`](../../docs/context/be-tests.md), [`docs/context/api-list.md`](../../docs/context/api-list.md)
+
+## Workflow
+
+1. **Scope** — `test-gap.md` first, else `missing_tests`
+2. **Read** — route/service source, existing `tests/test_*.py`, handoff if present
+3. **Behaviors** — status codes, JSON shape, persistence, error paths
+4. **Write** — pytest functions; use `client` fixture with temp SQLite DB (see existing tests)
+5. **Run** — `python -m pytest tests/ -q` from `apps/api/` until green
+6. **Register** — `python scripts/code_index_refresh.py --repo .`; confirm `missing_tests` is `[]`
+
+## Fixture pattern
+
+Reuse isolated DB per test module:
+
+```python
+@pytest.fixture
+def client(tmp_path, monkeypatch):
+    monkeypatch.setenv("DATABASE_URL", f"sqlite:///{tmp_path / 'test.db'}")
+    init_db()
+    with TestClient(app) as c:
+        yield c
+```
 
 ## Never
-- Implement features (use `be-dev`)
+
+- Implement features (`be-dev`)
 - Ignore `test-gap.md` when present
+- Mark step done while tests fail or `missing_tests` is non-empty
+
+## Output
+
+Report: files created/extended, test count, pytest result, refresh exit code.

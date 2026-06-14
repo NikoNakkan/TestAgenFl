@@ -15,3 +15,9 @@ Each task folder:
 | `state.yaml` | Orchestrator status + files per step |
 | `findings.md` | Navigator output |
 | `run-log.md` | Human-readable agent/file trace |
+| `test-gap.md` | Debugger output (bug-fix tasks) — see `test-gap.template.md` |
+| `test-handoff.md` | fe/be-dev → testing agent — see `test-handoff.template.md` |
+
+Templates: [`plan.template.md`](plan.template.md) · [`test-gap.template.md`](test-gap.template.md) · [`test-handoff.template.md`](test-handoff.template.md)
+
+Testing workflow: [`TESTING_GUIDE.md`](../TESTING_GUIDE.md)

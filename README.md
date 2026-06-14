@@ -29,6 +29,23 @@ npm install
 npm run dev
 ```
 
+## Testing
+
+Full workflow: [`docs/TESTING_GUIDE.md`](docs/TESTING_GUIDE.md)
+
+```powershell
+# FE — from apps/web-react
+npm test
+
+# BE — from apps/api
+python -m pytest tests/ -q
+
+# Gap check — from repo root
+python scripts/code_index_query.py --repo . missing_tests
+```
+
+Policy: colocated tests only · AAA pattern · i18n assertions via `i18n.t()` · bug-fix uses `test-gap.md`.
+
 ## Agentic workflow
 
 Toolkit source: [agentic-dev-toolkit](../AI-news/agentic-dev-toolkit/HANDOVER.md)

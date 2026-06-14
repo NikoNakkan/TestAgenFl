@@ -10,7 +10,8 @@ description: Reproduce BE failures, minimal fix, write test-gap.md, hand off reg
 
 ## Read first
 1. `docs/context/be-tests.md`
-2. `docs/rules/rules-testing.md` — regression section
+2. [`docs/TESTING_GUIDE.md`](../../docs/TESTING_GUIDE.md) — regression section
+3. `docs/rules/rules-testing.md`
 3. `python scripts/code_index_query.py who_uses <symbol>`
 4. `docs/context/api-list.md` for route context
 

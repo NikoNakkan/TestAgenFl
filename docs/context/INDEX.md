@@ -5,6 +5,7 @@ Read **one** relevant file before opening source code.
 | File | When to read |
 |------|--------------|
 | [CODE-INDEX.md](CODE-INDEX.md) | **After any export change** — refresh graph.db, fix `purpose`, validate |
+| [TESTING_GUIDE.md](../TESTING_GUIDE.md) | **How to create/run tests** — Vitest, pytest, test-gap flow |
 | [fe-utils.md](fe-utils.md) | Helpers, hooks, pure functions (React) |
 | [fe-components.md](fe-components.md) | UI components (index-synced) |
 | [fe-design-system.md](fe-design-system.md) | **Theme paths, colors, base vs extending components** — read before UI work |

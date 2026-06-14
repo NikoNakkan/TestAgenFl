@@ -20,7 +20,8 @@ docs/working/<TASK-ID>/
 ├── state.yaml         ← orchestrator owns this (status + files_written per step)
 ├── run-log.md         ← human-readable agent/file trace (update each step)
 ├── findings.md        ← optional, from navigator
-└── test-gap.md        ← from fe/be-debugger on bug-fix tasks
+├── test-gap.md        ← from fe/be-debugger on bug-fix tasks
+└── test-handoff.md    ← from fe/be-dev before testing step (optional)
 ```
 
 ## Startup

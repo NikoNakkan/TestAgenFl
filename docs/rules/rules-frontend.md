@@ -15,3 +15,4 @@
 - Read order: theme/colors → i18n keys → base components → extending → page shell
 - **No magic colors** — see [rules-theming.md](rules-theming.md); tokens only in `theme.css`
 - **No UI string literals** — see [rules-i18n.md](rules-i18n.md); use `react-i18next` + `fe-i18n.md`
+- **Tests** — fe/be-dev hand off to testing agents; see [TESTING_GUIDE.md](../TESTING_GUIDE.md)

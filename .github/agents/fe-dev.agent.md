@@ -28,6 +28,10 @@ description: Implement React features — hooks, components, utils. Scope apps/w
 - New i18n key → row in `fe-i18n.md`
 - Run `python scripts/code_index_refresh.py --repo .` before finishing (must exit 0)
 
+## Handoff to testing
+
+When exports are ready for tests, append [`test-handoff.template.md`](../../docs/working/test-handoff.template.md) to `docs/working/<TASK-ID>/` (or extend `run-log.md`). Do **not** write colocated tests — that is `fe-testing-agent` unless you are fixing a one-line test yourself during debug.
+
 ## Never
 - Edit `apps/api/**` or `packages/contract/**`
 - Hardcode colors in component CSS
