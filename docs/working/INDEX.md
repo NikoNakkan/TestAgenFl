@@ -20,4 +20,4 @@ Each task folder:
 
 Templates: [`plan.template.md`](plan.template.md) · [`test-gap.template.md`](test-gap.template.md) · [`test-handoff.template.md`](test-handoff.template.md)
 
-Testing workflow: [`TESTING_GUIDE.md`](../TESTING_GUIDE.md)
+Testing workflow: [`test-writing.md`](../context/test-writing.md)

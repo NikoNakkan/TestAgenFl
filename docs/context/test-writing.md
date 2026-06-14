@@ -1,6 +1,6 @@
-# Testing guide
+# Test writing
 
-> **Policy:** [`rules-testing.md`](rules/rules-testing.md) · **Agent:** `fe-testing-agent` / `be-testing-agent` · **Index:** [`fe-tests.md`](context/fe-tests.md) / [`be-tests.md`](context/be-tests.md) (auto-synced)
+> **Policy:** [`rules-testing.md`](../rules/rules-testing.md) · **Agent:** `fe-testing-agent` / `be-testing-agent` · **Index:** [`fe-tests.md`](fe-tests.md) / [`be-tests.md`](be-tests.md) (auto-synced)
 
 This PoC uses **colocated unit/integration tests only** — Vitest + React Testing Library (FE), pytest + TestClient (BE). No separate E2E layer in scope.
 
@@ -81,8 +81,8 @@ If `docs/working/<TASK-ID>/test-gap.md` exists → read it **first**; implement 
 
 - The export under test (component, hook, route, service)
 - Existing colocated test file (extend) or create new sibling file
-- [`rules-testing.md`](rules/rules-testing.md), [`rules-i18n.md`](rules/rules-i18n.md) (FE UI copy)
-- [`fe-i18n.md`](context/fe-i18n.md) for locale keys used in assertions
+- [`rules-testing.md`](../rules/rules-testing.md), [`rules-i18n.md`](../rules/rules-i18n.md) (FE UI copy)
+- [`fe-i18n.md`](fe-i18n.md) for locale keys used in assertions
 
 ### 3. Identify behaviors
 
@@ -209,7 +209,7 @@ Colocate: `apps/api/tests/test_<module>.py` covers routes/services in scope.
 
 ## Regression from debugger (`test-gap.md`)
 
-1. **fe-debugger** / **be-debugger** fills [`test-gap.template.md`](working/test-gap.template.md) → `docs/working/<TASK-ID>/test-gap.md`
+1. **fe-debugger** / **be-debugger** fills [`test-gap.template.md`](../working/test-gap.template.md) → `docs/working/<TASK-ID>/test-gap.md`
 2. Must include **Why existing tests did not catch this**
 3. **Testing agent** adds each listed test (new file or extend existing)
 4. Task not done until test-gap tests pass + refresh OK
@@ -231,7 +231,7 @@ Colocate: `apps/api/tests/test_<module>.py` covers routes/services in scope.
 
 ## Handoff from fe-dev / be-dev
 
-When implementation is ready for tests, append to `run-log.md` or use [`test-handoff.template.md`](working/test-handoff.template.md):
+When implementation is ready for tests, append to `run-log.md` or use [`test-handoff.template.md`](../working/test-handoff.template.md):
 
 - Files changed
 - New/changed exports
@@ -247,5 +247,5 @@ Orchestrator then dispatches the testing agent.
 
 See auto-synced catalogs:
 
-- [`docs/context/fe-tests.md`](context/fe-tests.md)
-- [`docs/context/be-tests.md`](context/be-tests.md)
+- [`fe-tests.md`](fe-tests.md)
+- [`be-tests.md`](be-tests.md)

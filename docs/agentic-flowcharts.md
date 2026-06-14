@@ -12,7 +12,8 @@
 | Amber rectangle `[[ ]]` | **Rules** | agent-decisions.md, rules-testing.md |
 | Green cylinder `[( )]` | **Context** | fe-components.md, api-list.md |
 | Purple cylinder `[( )]` | **Index** | graph.db, code_index_*.py |
-| Gray doc `{{ }}` | **Working artifact** | plan.md, test-gap.md |
+| Gray doc `{{ }}` | **Working artifact** | plan.md, test-gap.md, test-handoff.md |
+| Guide `( )` in context band | **docs/context/test-writing.md** | Test creation workflow (not auto-synced) |
 
 ---
 
@@ -282,6 +283,10 @@ flowchart TD
 Recommended chart. **Solid arrows** = execution · **Dashed arrows** = read only.
 
 ```mermaid
+---
+config:
+  layout: elk
+---
 flowchart TB
   subgraph RULES["Rules · docs/rules/"]
     direction LR
@@ -291,11 +296,13 @@ flowchart TB
     RF[[rules-frontend]]
     RTH[[rules-theming]]
     RI18N[[rules-i18n]]
+    THO[[test-handoff.template]]
   end
 
   subgraph CONTEXT["Context · docs/context/"]
     direction LR
     CIDX[(INDEX · CODE-INDEX)]
+    TWRITE[(test-writing.md)]
     CFE[(fe-components · fe-utils · fe-services)]
     CDS[(fe-design-system · fe-i18n)]
     CBE[(api-list · be-services · fe-tests · be-tests)]
@@ -319,7 +326,9 @@ flowchart TB
 
   NAV --> FD[fe-dev]
   FDN --> FD
-  FD --> FTA[fe-testing-agent]
+  FD --> TH{{test-handoff.md}}
+  BD --> TH
+  TH --> FTA[fe-testing-agent]
 
   BTA --> FEV[flow-end-validator]
   FTA --> FEV
@@ -327,30 +336,31 @@ flowchart TB
   PA -.-> AD
   PA -.-> CIDX
   PA -.-> GDB
-
   NAV -.-> CIDX
   NAV -.-> GDB
   NAV -.-> QRY
-
   FDN -.-> CDS
   FDN -.-> RTH
   FDN -.-> RI18N
-
   BAC -.-> CBE
   BD -.-> CBE
   BD -.-> RB
+  BD -.-> THO
   BTA -.-> RT
+  BTA -.-> TWRITE
   BTA -.-> CBE
-
   FD -.-> CFE
   FD -.-> CDS
   FD -.-> RF
   FD -.-> RTH
   FD -.-> RI18N
+  FD -.-> THO
   FTA -.-> RT
   FTA -.-> RI18N
+  FTA -.-> TWRITE
   FTA -.-> CFE
-
+  FTA -.-> CDS
+  FTA -.-> TH
   FEV -.-> CIDX
   FEV -.-> REF
   REF -.-> GDB
@@ -360,26 +370,28 @@ flowchart TB
   classDef rule fill:#fef3c7,stroke:#d97706,color:#92400e
   classDef context fill:#dcfce7,stroke:#16a34a,color:#14532d
   classDef index fill:#ede9fe,stroke:#7c3aed,color:#4c1d95
+  classDef artifact fill:#f1f5f9,stroke:#64748b,color:#334155
 
   class U user
   class PA,OR,NAV,FDN,BAC,BD,BTA,FD,FTA,FEV agent
-  class AD,RT,RB,RF,RTH,RI18N rule
-  class CIDX,CFE,CDS,CBE context
+  class AD,RT,RB,RF,RTH,RI18N,THO rule
+  class CIDX,TWRITE,CFE,CDS,CBE context
   class GDB,QRY,REF index
+  class TH artifact
 ```
 
 ### Who reads what (development)
 
-| Agent | Rules | Context | Index |
-|-------|-------|---------|-------|
+| Agent | Rules | Context / docs | Index |
+|-------|-------|----------------|-------|
 | plan-agent | agent-decisions | INDEX, CODE-INDEX | graph.db |
 | navigator | — | INDEX + symbol MDs | query scripts |
 | fe-design-navigator | theming, i18n | fe-design-system, fe-i18n | — |
 | be-api-contract | rules-backend | api-list, types | — |
-| be-dev | rules-backend | api-list, be-services, envs | find_symbol |
-| be-testing-agent | rules-testing | be-tests | missing_tests |
-| fe-dev | frontend, theming, i18n | fe-*, fe-i18n | find_symbol |
-| fe-testing-agent | rules-testing, rules-i18n, TESTING_GUIDE | fe-tests, fe-i18n | missing_tests |
+| be-dev | rules-backend | api-list, be-services | find_symbol · writes **test-handoff.md** |
+| be-testing-agent | rules-testing | test-writing, be-tests | missing_tests |
+| fe-dev | frontend, theming, i18n | fe-*, fe-i18n | find_symbol · writes **test-handoff.md** |
+| fe-testing-agent | rules-testing, rules-i18n | test-writing, fe-tests, fe-i18n, test-handoff | missing_tests |
 | flow-end-validator | — | CODE-INDEX | code_index_refresh |
 
 ---
@@ -387,18 +399,24 @@ flowchart TB
 ## 4. Debugging flow — with rules, context & index
 
 ```mermaid
+---
+config:
+  layout: elk
+---
 flowchart TB
   subgraph RULES["Rules · docs/rules/"]
     direction LR
     AD[[agent-decisions]]
     RT[[rules-testing]]
+    RI18N[[rules-i18n]]
     TGT[[test-gap.template]]
   end
 
   subgraph CONTEXT["Context · docs/context/"]
     direction LR
     CIDX[(INDEX · CODE-INDEX)]
-    CFE[(fe-tests · fe-components · fe-utils)]
+    TWRITE[(test-writing.md)]
+    CFE[(fe-tests · fe-components · fe-i18n)]
     CBE[(be-tests · api-list · be-services)]
   end
 
@@ -427,28 +445,27 @@ flowchart TB
 
   PA -.-> AD
   PA -.-> CIDX
-
   NAV -.-> CIDX
   NAV -.-> GDB
   NAV -.-> QRY
-
   BDBG -.-> RT
+  BDBG -.-> TWRITE
   BDBG -.-> CBE
   BDBG -.-> GDB
   TG -.-> TGT
-
   FDBG -.-> RT
+  FDBG -.-> TWRITE
   FDBG -.-> CFE
   FDBG -.-> GDB
-
   BTA -.-> RT
+  BTA -.-> TWRITE
   BTA -.-> TG
   BTA -.-> CBE
-
   FTA -.-> RT
+  FTA -.-> RI18N
+  FTA -.-> TWRITE
   FTA -.-> TG
   FTA -.-> CFE
-
   FEV -.-> CIDX
   FEV -.-> REF
   REF -.-> GDB
@@ -462,19 +479,20 @@ flowchart TB
 
   class U user
   class PA,OR,NAV,BDBG,FDBG,BTA,FTA,FEV agent
-  class AD,RT,TGT rule
-  class CIDX,CFE,CBE context
+  class AD,RT,RI18N,TGT rule
+  class CIDX,TWRITE,CFE,CBE context
   class GDB,QRY,REF index
   class TG artifact
 ```
 
 ### Who reads what (debugging)
 
-| Agent | Rules | Context | Index |
-|-------|-------|---------|-------|
+| Agent | Rules | Context / docs | Index |
+|-------|-------|----------------|-------|
 | plan-agent | agent-decisions (bug-fix table) | INDEX | — |
 | navigator | — | INDEX, fe-tests or be-tests | graph.db, who_uses |
-| fe-debugger | rules-testing | fe-tests, fe-components | who_uses |
-| be-debugger | rules-testing | be-tests, api-list | who_uses |
-| fe/be-testing-agent | rules-testing, TESTING_GUIDE | test-gap.md + test MDs | — |
+| fe-debugger | rules-testing | test-writing, fe-tests, fe-components, fe-i18n | who_uses |
+| be-debugger | rules-testing | test-writing, be-tests, api-list | who_uses |
+| fe-testing-agent | rules-testing, **rules-i18n** | **test-writing**, test-gap.md, fe-tests, fe-i18n | — |
+| be-testing-agent | rules-testing | **test-writing**, test-gap.md, be-tests | — |
 | flow-end-validator | — | CODE-INDEX | code_index_refresh |

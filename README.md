@@ -31,7 +31,7 @@ npm run dev
 
 ## Testing
 
-Full workflow: [`docs/TESTING_GUIDE.md`](docs/TESTING_GUIDE.md)
+Full workflow: [`docs/context/test-writing.md`](docs/context/test-writing.md)
 
 ```powershell
 # FE — from apps/web-react

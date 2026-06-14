@@ -1,6 +1,6 @@
 # Testing rules
 
-Policy details and examples: [`TESTING_GUIDE.md`](../TESTING_GUIDE.md)
+Policy details and examples: [`test-writing.md`](../context/test-writing.md)
 
 ## Placement (colocated)
 

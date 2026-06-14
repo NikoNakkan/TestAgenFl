@@ -12,7 +12,7 @@ description: Write pytest colocated tests — missing_tests gaps and test-gap re
 
 ## Read first
 
-1. [`docs/TESTING_GUIDE.md`](../../docs/TESTING_GUIDE.md) — full create-test workflow
+1. [`docs/context/test-writing.md`](../../docs/context/test-writing.md) — full create-test workflow
 2. [`docs/rules/rules-testing.md`](../../docs/rules/rules-testing.md)
 3. If **`docs/working/<TASK-ID>/test-gap.md`** exists → implement **every** test listed
 4. Else: `python scripts/code_index_query.py --repo . missing_tests`

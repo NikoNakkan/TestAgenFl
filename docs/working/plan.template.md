@@ -20,9 +20,9 @@
 | 1 | navigator | Query index + context; write reuse/create findings | INDEX.md | read-only | findings.md written |
 | 2 | be-api-contract | Define API contract (if new surfaces) | api-list.md, types.md | packages/contract/** | contract file exists |
 | 3 | be-dev | Implement routes + service | api-list.md, envs.md | apps/api/** | routes respond |
-| 4 | be-testing-agent | Tests for `missing_tests` in BE scope | be-tests.md, TESTING_GUIDE.md | apps/api/tests/** | no missing_tests in scope; pytest pass |
+| 4 | be-testing-agent | Tests for `missing_tests` in BE scope | be-tests.md, test-writing.md | apps/api/tests/** | no missing_tests in scope; pytest pass |
 | 5 | fe-dev | UI + hooks per goal | fe-components.md, fe-i18n.md, fe-design-system.md | apps/web-react/** | UI meets acceptance; theming + i18n rules |
-| 6 | fe-testing-agent | Tests for `missing_tests` in FE scope | fe-tests.md, TESTING_GUIDE.md, rules-i18n.md | apps/web-react/** | no missing_tests in scope; vitest pass |
+| 6 | fe-testing-agent | Tests for `missing_tests` in FE scope | fe-tests.md, test-writing.md, rules-i18n.md | apps/web-react/** | no missing_tests in scope; vitest pass |
 | 7 | flow-end-validator | Refresh index + validate graph↔MD + sign off | CODE-INDEX.md | scripts/**, docs/context/** | `code_index_refresh.py` exit 0; `missing_tests` empty |
 
 > Omit or fast-complete rows when [agent-decisions.md](../rules/agent-decisions.md) says scope does not need them (e.g. API-only goal → skip FE rows).
@@ -33,7 +33,7 @@
 |---|-------|------|---------------|-------|-----------|
 | 1 | navigator | findings | INDEX.md | read-only | findings.md |
 | 2 | fe-debugger or be-debugger | reproduce, test-gap.md, minimal fix | fe-tests.md or be-tests.md | apps/** | test-gap.md written; fix applied |
-| 3 | fe-testing-agent or be-testing-agent | regression tests from test-gap | fe-tests.md or be-tests.md, TESTING_GUIDE.md | apps/** | all test-gap tests pass |
+| 3 | fe-testing-agent or be-testing-agent | regression tests from test-gap | fe-tests.md or be-tests.md, test-writing.md | apps/** | all test-gap tests pass |
 | 4 | flow-end-validator | refresh + validate | CODE-INDEX.md | scripts/** | exit 0 |
 
 ## Notes

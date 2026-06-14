@@ -10,7 +10,7 @@ description: Reproduce FE bugs, trace deps, minimal fix, write test-gap.md, then
 
 ## Read first
 1. `docs/context/fe-tests.md`
-2. [`docs/TESTING_GUIDE.md`](../../docs/TESTING_GUIDE.md) — regression section
+2. [`docs/context/test-writing.md`](../../docs/context/test-writing.md) — regression section
 3. `docs/rules/rules-testing.md`
 3. `python scripts/code_index_query.py who_uses <symbol>`
 4. Relevant section in `fe-utils.md` / `fe-components.md` / `fe-services.md`
