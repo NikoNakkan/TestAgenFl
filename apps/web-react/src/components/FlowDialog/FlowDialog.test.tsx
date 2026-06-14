@@ -1,5 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import i18n from '../../i18n'
 import * as savedTimeApi from '../../api/savedTime'
 import { FlowDialog } from './FlowDialog'
 
@@ -12,7 +13,7 @@ describe('FlowDialog', () => {
     vi.spyOn(savedTimeApi, 'fetchSavedTime').mockResolvedValue({ value: null })
     render(<FlowDialog flowActive={false} />)
     expect(screen.getByTestId('flow-dialog')).toHaveClass('flow-dialog--idle')
-    expect(screen.getByText('Off')).toBeInTheDocument()
+    expect(screen.getByText(i18n.t('app:flow.off'))).toBeInTheDocument()
     await waitFor(() => expect(screen.getByTestId('time-dialog')).toBeInTheDocument())
   })
 
@@ -20,7 +21,7 @@ describe('FlowDialog', () => {
     vi.spyOn(savedTimeApi, 'fetchSavedTime').mockResolvedValue({ value: null })
     render(<FlowDialog flowActive={true} />)
     expect(screen.getByTestId('flow-dialog')).toHaveClass('flow-dialog--active')
-    expect(screen.getByText('On')).toBeInTheDocument()
+    expect(screen.getByText(i18n.t('app:flow.on'))).toBeInTheDocument()
     await waitFor(() => expect(screen.getByTestId('time-dialog')).toBeInTheDocument())
   })
 })

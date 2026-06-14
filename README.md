@@ -4,9 +4,16 @@ PoC monorepo bootstrapped via [agentic-dev-toolkit](../AI-news/agentic-dev-toolk
 
 ## Stack
 
-- `apps/web-react` — Vite + React + TypeScript
-- `apps/api` — FastAPI (`GET /health`, `GET /api/info`)
+- `apps/web-react` — Vite + React + TypeScript + react-i18next
+- `apps/api` — FastAPI (`GET /health`, `GET /api/info`, toggle + saved-time APIs)
 - `packages/contract` — OpenAPI stub
+
+## Theming & i18n
+
+- Theme tokens: `apps/web-react/src/styles/theme.css` (only file with raw colors)
+- Locales: `apps/web-react/src/i18n/locales/en.json`, `el.json`
+- Rules: `docs/rules/rules-theming.md`, `docs/rules/rules-i18n.md`
+- Key catalog: `docs/context/fe-i18n.md`
 
 ## Run
 

@@ -1,0 +1,37 @@
+{
+  "app": {
+    "preferences": {
+      "title": "Preferences"
+    },
+    "status": {
+      "title": "Status"
+    },
+    "errors": {
+      "serverUnreachable": "Could not reach the server.",
+      "saveFailed": "Could not save. Try again."
+    },
+    "toggle": {
+      "on": "On",
+      "off": "Off"
+    },
+    "flow": {
+      "on": "On",
+      "off": "Off"
+    }
+  },
+  "time": {
+    "now": "Now",
+    "saved": "Saved",
+    "empty": "—",
+    "loading": "…",
+    "saveButton": "Time",
+    "saveError": "Could not save. Try again.",
+    "ariaLabel": "Time"
+  },
+  "common": {
+    "toggle": {
+      "true": "True",
+      "false": "False"
+    }
+  }
+}

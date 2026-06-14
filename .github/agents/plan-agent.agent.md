@@ -18,7 +18,8 @@ python scripts/code_index_query.py --repo . find_symbol <keyword>
 python scripts/code_index_query.py --repo . context_pack "<keywords>"
 ```
 
-4. UI → [fe-design-system.md](../../docs/context/fe-design-system.md)
+4. UI → [fe-design-system.md](../../docs/context/fe-design-system.md), [fe-i18n.md](../../docs/context/fe-i18n.md)
+5. Bug-fix goal → use **bug-fix variant** in [plan.template.md](../../docs/working/plan.template.md)
 
 ## Spec questions (0–3)
 

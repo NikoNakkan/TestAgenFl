@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { fetchInfo, type InfoResponse } from './api/info'
 import { BaseButton } from './components/BaseButton/BaseButton'
 import { FlowDialog } from './components/FlowDialog/FlowDialog'
@@ -6,6 +7,7 @@ import { useToggleState } from './hooks/useToggleState'
 import './App.css'
 
 function App() {
+  const { t } = useTranslation('app')
   const [info, setInfo] = useState<InfoResponse | null>(null)
   const [infoError, setInfoError] = useState<string | null>(null)
   const { value, persist, loading, error: toggleError } = useToggleState()
@@ -24,7 +26,7 @@ function App() {
       <FlowDialog flowActive={value} />
 
       <header className="app-header">
-        <h1>Preferences</h1>
+        <h1>{t('preferences.title')}</h1>
         {info && (
           <p className="app-version" data-testid="api-info">
             v{info.version}
@@ -32,25 +34,33 @@ function App() {
         )}
       </header>
 
-      {infoError && <p className="app-error" role="alert">Could not reach the server.</p>}
+      {infoError && (
+        <p className="app-error" role="alert">
+          {t('errors.serverUnreachable')}
+        </p>
+      )}
 
       <section className="demo-panel">
-        <h2>Status</h2>
+        <h2>{t('status.title')}</h2>
         <div className="toggle-row">
           <span className="toggle-emoji" data-testid="toggle-emoji" aria-hidden="true">
             {value ? '😊' : '🙂'}
           </span>
           <BaseButton
             value={value}
-            trueLabel="On"
-            falseLabel="Off"
+            trueLabel={t('toggle.on')}
+            falseLabel={t('toggle.off')}
             onChange={(next) => {
               void persist(next)
             }}
             disabled={loading}
           />
         </div>
-        {toggleError && <p className="app-error" role="alert">Could not save. Try again.</p>}
+        {toggleError && (
+          <p className="app-error" role="alert">
+            {t('errors.saveFailed')}
+          </p>
+        )}
       </section>
     </main>
   )

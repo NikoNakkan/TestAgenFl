@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { TimeDialog } from '../TimeDialog/TimeDialog'
 import './FlowDialog.css'
 
@@ -6,7 +7,8 @@ export type FlowDialogProps = {
 }
 
 export function FlowDialog({ flowActive }: FlowDialogProps) {
-  const label = flowActive ? 'On' : 'Off'
+  const { t } = useTranslation('app')
+  const label = flowActive ? t('flow.on') : t('flow.off')
 
   return (
     <div

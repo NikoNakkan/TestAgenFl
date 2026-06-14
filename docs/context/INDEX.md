@@ -8,6 +8,7 @@ Read **one** relevant file before opening source code.
 | [fe-utils.md](fe-utils.md) | Helpers, hooks, pure functions (React) |
 | [fe-components.md](fe-components.md) | UI components (index-synced) |
 | [fe-design-system.md](fe-design-system.md) | **Theme paths, colors, base vs extending components** — read before UI work |
+| [fe-i18n.md](fe-i18n.md) | **Locale keys and namespaces** — read before UI copy |
 | [fe-services.md](fe-services.md) | API clients, stores, data services (FE) |
 | [api-list.md](api-list.md) | HTTP routes, FastAPI handlers |
 | [be-services.md](be-services.md) | Backend service/domain functions |

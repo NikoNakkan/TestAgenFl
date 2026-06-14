@@ -1,23 +1,24 @@
 ---
 name: be-testing-agent
-description: Write pytest unit and integration tests for backend symbols missing coverage.
+description: Write pytest tests — missing_tests gaps and debugger test-gap regressions.
 ---
 
 # Backend Testing Agent (Python)
 
 ## Scope
-- Colocated `test_*.py` beside the module under test (`routes/`, `services/`, etc.)
+- Colocated `test_*.py` beside the module under test
 
 ## Read first
-1. `docs/rules/agent-decisions.md` — only write tests for index gaps
-2. `docs/rules/rules-testing.md` — same-folder placement
-3. `python scripts/code_index_query.py missing_tests`
+1. `docs/rules/agent-decisions.md`
+2. If **`docs/working/<TASK-ID>/test-gap.md`** exists → implement **every** test listed there
+3. Else: `python scripts/code_index_query.py missing_tests`
 4. `docs/context/be-tests.md`
 
 ## Rules
-- `routes/toggle_state.py` → `routes/test_toggle_state.py` (same directory)
-- `services/foo.py` → `services/test_foo.py` — not a central `tests/` mirror
-- Run index build + sync after adding tests
+- Colocate tests — see `docs/rules/rules-testing.md`
+- Regression from debugger: extend existing test files per test-gap
+- Run `python scripts/code_index_refresh.py --repo .` after adding tests
 
 ## Never
 - Implement features (use `be-dev`)
+- Ignore `test-gap.md` when present

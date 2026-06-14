@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
+import i18n from '../../i18n'
 import { BaseButton } from './BaseButton'
 
 describe('BaseButton', () => {
@@ -18,6 +19,6 @@ describe('BaseButton', () => {
     render(<BaseButton value={true} onChange={vi.fn()} />)
 
     expect(screen.getByTestId('base-button')).toHaveClass('base-button--true')
-    expect(screen.getByText('True')).toBeInTheDocument()
+    expect(screen.getByText(i18n.t('common:toggle.true'))).toBeInTheDocument()
   })
 })

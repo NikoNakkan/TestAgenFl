@@ -19,7 +19,8 @@ docs/working/<TASK-ID>/
 ├── plan.md            ← from plan-agent (read-only for orchestrator)
 ├── state.yaml         ← orchestrator owns this (status + files_written per step)
 ├── run-log.md         ← human-readable agent/file trace (update each step)
-└── findings.md        ← optional, from navigator
+├── findings.md        ← optional, from navigator
+└── test-gap.md        ← from fe/be-debugger on bug-fix tasks
 ```
 
 ## Startup
@@ -34,7 +35,7 @@ docs/working/<TASK-ID>/
 
 Per [agent-decisions.md](../../docs/rules/agent-decisions.md):
 
-- **Testing step:** run `missing_tests` for scope; if empty, set step `done` with note `no gaps`
+- **Testing step:** if `test-gap.md` exists → dispatch testing agent (never skip). Else run `missing_tests`; if empty, set step `done` with note `no gaps`
 - **Navigator:** never skip on first run of a task
 
 ## State updates (after each step)

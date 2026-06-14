@@ -28,6 +28,16 @@
 - Every exported symbol → colocated test file linked in index (`symbols.tests`)
 - Run index build + sync after adding tests
 
+## Regression from debugger
+
+When `docs/working/<TASK-ID>/test-gap.md` exists:
+
+1. **fe-debugger** / **be-debugger** writes test-gap (why tests missed the bug + tests to add)
+2. **fe-testing-agent** / **be-testing-agent** implements **every** listed test — may extend existing test files
+3. Fix is not done until test-gap tests pass
+
+Template: [`test-gap.template.md`](../working/test-gap.template.md)
+
 ## Commands (add to project `scripts/validate.sh`)
 
 - FE: `npm test` or `npx vitest run`

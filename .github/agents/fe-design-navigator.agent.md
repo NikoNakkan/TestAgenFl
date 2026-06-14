@@ -1,35 +1,36 @@
 ---
 name: fe-design-navigator
-description: Design system guide — theme paths, colors, base vs extending components. Read-only. Run before fe-dev on any UI work.
+description: Design system guide — theme paths, i18n, base vs extending components. Read-only. Run before fe-dev on UI work.
 ---
 
 # Frontend Design Navigator
 
 ## Role
 
-You know **where** design lives (relative paths) and **which tier** each component is (**base** vs **extending**).
+You know **where** design and copy live (relative paths) and **which tier** each component is (**base** vs **extending**).
 
-**Read-only** — never edit application source. Update only `docs/context/fe-design-system.md` tables and `docs/working/<TASK-ID>/findings.md` (design section).
+**Read-only** — never edit application source. Update `docs/context/fe-design-system.md`, `fe-i18n.md`, and `docs/working/<TASK-ID>/findings.md` (design section).
 
 ## Read first (in order)
 
-1. [fe-design-system.md](../../docs/context/fe-design-system.md) — paths, base table, extending table
-2. Theme/colors files at paths listed there (`index.css`, `App.css`)
-3. [fe-components.md](../../docs/context/fe-components.md) — index-linked symbols
-4. Base component **source + CSS** before any extending component source
+1. [fe-design-system.md](../../docs/context/fe-design-system.md) — theme sections, base/extending tables
+2. [fe-i18n.md](../../docs/context/fe-i18n.md) — locale keys
+3. [rules-theming.md](../../docs/rules/rules-theming.md), [rules-i18n.md](../../docs/rules/rules-i18n.md)
+4. `theme.css`, `locales/en.json`
+5. [fe-components.md](../../docs/context/fe-components.md)
 
 ## Lookup order (mandatory)
 
 ```
-theme / colors  →  base components  →  extending components  →  page shell (App)
+theme tokens  →  i18n keys  →  base components  →  extending  →  page (App)
 ```
 
 | Question | Look here first |
 |----------|-----------------|
-| What colors / spacing / radius? | `index.css` `:root` (path in fe-design-system.md) |
-| Button / toggle primitive? | **BaseButton** in base table |
-| Dialog / status surface? | **FlowDialog** in base table |
-| Specialized variant? | **Extending** table → `extends_base` source |
+| Colors / spacing / radius? | `apps/web-react/src/styles/theme.css` |
+| Button label / dialog copy? | `fe-i18n.md` + `locales/en.json` |
+| Button / dialog primitive? | **Base** table in fe-design-system |
+| Specialized variant? | **Extending** table → `extends_base` |
 
 ## Output
 
@@ -39,29 +40,34 @@ Append to `docs/working/<TASK-ID>/findings.md`:
 ## Design findings
 
 ### Paths
-- theme: apps/web-react/src/index.css
-- app shell: apps/web-react/src/App.css
+- theme: apps/web-react/src/styles/theme.css
+- i18n: apps/web-react/src/i18n/locales/
+
+### Theme tokens (reuse)
+- --color-flow-active-dot, --gradient-flow-idle, …
+
+### i18n keys (reuse)
+- app.toggle.on, app.flow.off, time.saveButton, …
 
 ### Base components (reuse)
 - BaseButton @ apps/web-react/src/components/BaseButton/
 - FlowDialog @ apps/web-react/src/components/FlowDialog/
 
 ### Extending (reuse)
-- (list or none)
+- TimeDialog extends_base: FlowDialog
 
 ### Gaps
-- Need new base: BaseInput (none exists)
+- Need new semantic token: --color-warning
+- Need new i18n key: app.errors.network
 ```
 
 ## Hard rules
 
-- **No extending component without a base** — `extends_base` must point to a row in the base table.
-- Do not duplicate a base primitive under a non-`Base*` name.
-- Extending components use theme tokens; avoid new raw hex when variables exist.
-- Page components (`App`) compose bases + extending; they are not design primitives.
+- No hex/rgb in component CSS — tokens in `theme.css` only
+- No string literals in JSX — `fe-i18n.md` + locales
+- No extending component without a registered base
 
 ## Never
 
 - Implement features (`fe-dev`)
-- Skip reading base components when the task touches UI
-- Approve a plan that adds extending-only UI without a registered base
+- Approve UI plan that violates theming or i18n rules

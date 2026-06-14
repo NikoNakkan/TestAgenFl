@@ -1,16 +1,15 @@
 .base-button {
-  --btn-radius: 999px;
-  --btn-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+  --btn-radius: var(--radius-pill);
 
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: var(--space-3);
   min-width: 9rem;
-  padding: 0.85rem 1.25rem;
+  padding: 0.85rem var(--space-5);
   border: 1px solid transparent;
   border-radius: var(--btn-radius);
   font-family: inherit;
-  font-size: 1rem;
+  font-size: var(--font-size-md);
   font-weight: 700;
   letter-spacing: 0.02em;
   cursor: pointer;
@@ -20,7 +19,7 @@
     border-color 180ms ease,
     transform 120ms ease,
     box-shadow 180ms ease;
-  box-shadow: var(--btn-shadow);
+  box-shadow: var(--shadow-button);
 }
 
 .base-button:hover:not(:disabled) {
@@ -41,19 +40,19 @@
   height: 0.85rem;
   border-radius: 50%;
   background: currentColor;
-  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.35);
+  box-shadow: inset 0 0 0 2px var(--color-indicator-inset);
 }
 
 .base-button--false {
-  color: #f8fafc;
-  background: linear-gradient(135deg, #64748b 0%, #475569 100%);
-  border-color: #334155;
+  color: var(--color-text-on-button-false);
+  background: var(--gradient-button-false);
+  border-color: var(--color-button-false-border);
 }
 
 .base-button--true {
-  color: #ecfdf5;
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  border-color: #047857;
+  color: var(--color-text-on-button-true);
+  background: var(--gradient-button-true);
+  border-color: var(--color-button-true-border);
 }
 
 .base-button__label {

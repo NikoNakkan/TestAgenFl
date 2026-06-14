@@ -1,0 +1,95 @@
+:root {
+  /* 1. Raw palette */
+  --palette-neutral-0: #ffffff;
+  --palette-slate-50: #f8fafc;
+  --palette-slate-200: #e2e8f0;
+  --palette-slate-300: #cbd5e1;
+  --palette-slate-400: #94a3b8;
+  --palette-slate-500: #64748b;
+  --palette-slate-600: #475569;
+  --palette-slate-700: #334155;
+  --palette-slate-900: #0f172a;
+  --palette-emerald-50: #ecfdf5;
+  --palette-emerald-200: #a7f3d0;
+  --palette-emerald-300: #6ee7b7;
+  --palette-emerald-500: #10b981;
+  --palette-emerald-600: #059669;
+  --palette-emerald-700: #047857;
+  --palette-emerald-800: #064e3b;
+  --palette-red-700: #b91c1c;
+
+  /* 2. Semantic colors */
+  --color-text-primary: var(--palette-slate-900);
+  --color-text-muted: var(--palette-slate-600);
+  --color-text-flow-active: var(--palette-emerald-800);
+  --color-text-flow-idle: var(--palette-slate-700);
+  --color-text-on-button-false: var(--palette-slate-50);
+  --color-text-on-button-true: var(--palette-emerald-50);
+  --color-text-label-muted: var(--palette-slate-500);
+  --color-error: var(--palette-red-700);
+  --color-border-subtle: rgba(15, 23, 42, 0.12);
+  --color-surface-glass: rgba(255, 255, 255, 0.72);
+  --color-surface-glass-border: rgba(255, 255, 255, 0.6);
+  --color-surface-panel: rgba(255, 255, 255, 0.55);
+  --color-surface-dialog: rgba(255, 255, 255, 0.85);
+  --color-flow-idle-border: var(--palette-slate-300);
+  --color-flow-active-border: var(--palette-emerald-300);
+  --color-flow-idle-dot: var(--palette-slate-400);
+  --color-flow-active-dot: var(--palette-emerald-500);
+  --color-button-false-border: var(--palette-slate-700);
+  --color-button-true-border: var(--palette-emerald-700);
+  --color-time-button-bg: var(--palette-slate-50);
+  --color-time-button-border: var(--palette-slate-400);
+  --color-time-button-hover-bg: var(--palette-slate-200);
+  --color-time-button-hover-border: var(--palette-slate-500);
+  --color-indicator-inset: rgba(255, 255, 255, 0.35);
+
+  --gradient-flow-idle: linear-gradient(
+    160deg,
+    var(--palette-slate-200) 0%,
+    var(--palette-slate-50) 45%,
+    var(--palette-slate-300) 100%
+  );
+  --gradient-flow-active: linear-gradient(
+    160deg,
+    var(--palette-emerald-200) 0%,
+    var(--palette-emerald-50) 50%,
+    var(--palette-emerald-300) 100%
+  );
+  --gradient-button-false: linear-gradient(
+    135deg,
+    var(--palette-slate-500) 0%,
+    var(--palette-slate-600) 100%
+  );
+  --gradient-button-true: linear-gradient(
+    135deg,
+    var(--palette-emerald-500) 0%,
+    var(--palette-emerald-600) 100%
+  );
+
+  /* 3. Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+
+  /* 4. Typography */
+  --font-family-sans: 'Segoe UI', system-ui, sans-serif;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.75rem;
+  --line-height-normal: 1.5;
+
+  /* 5. Radius, shadow, z-index */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.65rem;
+  --radius-lg: 0.85rem;
+  --radius-xl: 1rem;
+  --radius-pill: 999px;
+  --shadow-button: 0 10px 24px rgba(15, 23, 42, 0.12);
+  --z-overlay: 100;
+  --z-modal: 110;
+}

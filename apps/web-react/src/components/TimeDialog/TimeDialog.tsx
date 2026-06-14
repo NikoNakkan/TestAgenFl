@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useSavedTime } from '../../hooks/useSavedTime'
 import './TimeDialog.css'
 
@@ -7,6 +8,7 @@ function formatTime(iso: string): string {
 }
 
 export function TimeDialog() {
+  const { t } = useTranslation('time')
   const [now, setNow] = useState(() => new Date())
   const { value, saveCurrentTime, loading, saving, error } = useSavedTime()
 
@@ -16,15 +18,15 @@ export function TimeDialog() {
   }, [])
 
   return (
-    <div className="time-dialog" data-testid="time-dialog" role="group" aria-label="Time">
-      <p className="time-dialog__label">Now</p>
+    <div className="time-dialog" data-testid="time-dialog" role="group" aria-label={t('ariaLabel')}>
+      <p className="time-dialog__label">{t('now')}</p>
       <p className="time-dialog__clock" data-testid="time-dialog-now">
         {now.toLocaleTimeString()}
       </p>
 
-      <p className="time-dialog__label">Saved</p>
+      <p className="time-dialog__label">{t('saved')}</p>
       <p className="time-dialog__saved" data-testid="time-dialog-saved">
-        {loading ? '…' : value ? formatTime(value) : '—'}
+        {loading ? t('loading') : value ? formatTime(value) : t('empty')}
       </p>
 
       <button
@@ -36,12 +38,12 @@ export function TimeDialog() {
           void saveCurrentTime()
         }}
       >
-        Time
+        {t('saveButton')}
       </button>
 
       {error && (
         <p className="time-dialog__error" role="alert">
-          Could not save. Try again.
+          {t('saveError')}
         </p>
       )}
     </div>

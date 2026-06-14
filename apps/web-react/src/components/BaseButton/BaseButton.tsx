@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import './BaseButton.css'
 
 export type BaseButtonProps = {
@@ -13,11 +14,14 @@ export function BaseButton({
   value,
   onChange,
   disabled = false,
-  trueLabel = 'True',
-  falseLabel = 'False',
+  trueLabel,
+  falseLabel,
   'data-testid': testId = 'base-button',
 }: BaseButtonProps) {
-  const label = value ? trueLabel : falseLabel
+  const { t } = useTranslation('common')
+  const label = value
+    ? (trueLabel ?? t('toggle.true'))
+    : (falseLabel ?? t('toggle.false'))
 
   return (
     <button

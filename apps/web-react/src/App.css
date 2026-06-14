@@ -1,52 +1,52 @@
 .app-shell {
-  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-family: var(--font-family-sans);
   max-width: 28rem;
   min-height: 100vh;
   margin: 0 auto;
-  padding: 2rem 1rem;
-  color: #0f172a;
+  padding: var(--space-8) var(--space-4);
+  color: var(--color-text-primary);
   text-align: left;
   transition: background 280ms ease;
 }
 
 .app-header h1 {
-  margin: 0 0 0.25rem;
-  font-size: 1.75rem;
+  margin: 0 0 var(--space-1);
+  font-size: var(--font-size-lg);
   font-weight: 700;
-  color: #0f172a;
+  color: var(--color-text-primary);
 }
 
 .app-version {
-  margin: 0 0 1.5rem;
-  font-size: 0.875rem;
-  color: #475569;
+  margin: 0 0 var(--space-6);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
 }
 
 .app-error {
-  margin: 0 0 1rem;
-  color: #b91c1c;
+  margin: 0 0 var(--space-4);
+  color: var(--color-error);
   font-size: 0.9rem;
 }
 
 .app-shell--flow-idle {
-  background: linear-gradient(160deg, #e2e8f0 0%, #f8fafc 45%, #cbd5e1 100%);
+  background: var(--gradient-flow-idle);
 }
 
 .app-shell--flow-active {
-  background: linear-gradient(160deg, #a7f3d0 0%, #ecfdf5 50%, #6ee7b7 100%);
+  background: var(--gradient-flow-active);
 }
 
 .demo-panel {
-  margin-top: 2rem;
-  padding: 1.5rem;
-  border-radius: 1rem;
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  margin-top: var(--space-8);
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface-glass);
+  border: 1px solid var(--color-surface-glass-border);
   backdrop-filter: blur(6px);
 }
 
 .demo-panel h2 {
-  margin: 0 0 1rem;
+  margin: 0 0 var(--space-4);
   font-size: 1.1rem;
   font-weight: 600;
 }
@@ -54,7 +54,7 @@
 .toggle-row {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: var(--space-4);
 }
 
 .toggle-emoji {
@@ -65,10 +65,4 @@
 
 .toggle-row:has(.base-button--true) .toggle-emoji {
   transform: scale(1.08);
-}
-
-.state-readout {
-  margin: 1rem 0 0;
-  font-size: 0.95rem;
-  color: #475569;
 }

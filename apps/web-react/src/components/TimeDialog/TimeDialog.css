@@ -1,9 +1,9 @@
 .time-dialog {
-  margin-top: 0.75rem;
-  padding: 0.75rem;
-  border-radius: 0.65rem;
-  border: 1px solid rgba(15, 23, 42, 0.12);
-  background: rgba(255, 255, 255, 0.55);
+  margin-top: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-subtle);
+  background: var(--color-surface-panel);
 }
 
 .time-dialog__label {
@@ -12,7 +12,7 @@
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #64748b;
+  color: var(--color-text-label-muted);
 }
 
 .time-dialog__label + .time-dialog__clock,
@@ -22,19 +22,19 @@
 
 .time-dialog__clock,
 .time-dialog__saved {
-  margin: 0 0 0.5rem;
+  margin: 0 0 var(--space-2);
   font-size: 1.1rem;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
 }
 
 .time-dialog__button {
-  margin-top: 0.25rem;
+  margin-top: var(--space-1);
   padding: 0.45rem 0.85rem;
-  border-radius: 0.5rem;
-  border: 1px solid #94a3b8;
-  background: #f8fafc;
-  color: #0f172a;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-time-button-border);
+  background: var(--color-time-button-bg);
+  color: var(--color-text-primary);
   font-weight: 600;
   font-size: 0.9rem;
   cursor: pointer;
@@ -44,8 +44,8 @@
 }
 
 .time-dialog__button:hover:not(:disabled) {
-  background: #e2e8f0;
-  border-color: #64748b;
+  background: var(--color-time-button-hover-bg);
+  border-color: var(--color-time-button-hover-border);
 }
 
 .time-dialog__button:disabled {
@@ -54,7 +54,7 @@
 }
 
 .time-dialog__error {
-  margin: 0.5rem 0 0;
+  margin: var(--space-2) 0 0;
   font-size: 0.85rem;
-  color: #b91c1c;
+  color: var(--color-error);
 }

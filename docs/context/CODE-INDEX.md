@@ -45,6 +45,7 @@ This runs **build → sync → validate**. Exit code **must be 0**.
 | React components | [fe-components.md](fe-components.md) |
 | React hooks | [fe-utils.md](fe-utils.md) |
 | FE API clients | [fe-services.md](fe-services.md) |
+| i18n keys (human catalog) | [fe-i18n.md](fe-i18n.md) |
 | BE route handlers | [api-list.md](api-list.md) |
 | BE services | [be-services.md](be-services.md) |
 

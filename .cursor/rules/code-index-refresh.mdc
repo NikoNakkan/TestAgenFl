@@ -11,4 +11,6 @@ When you add, change, or remove **exported** symbols in `apps/web-react` or `app
 2. If validate fails with `missing human purpose`, add `purpose` in the correct `docs/context/*.md` file — see [CODE-INDEX.md](docs/context/CODE-INDEX.md)
 3. Confirm: `python scripts/code_index_query.py --repo . missing_tests` returns `[]`
 
-**Never skip this** at the end of a feature task. The catalog lives in `.code-index/graph.db`; context rows live in `docs/context/`.
+**UI rules:** no hex/rgb outside `apps/web-react/src/styles/theme.css`; no user-facing string literals in JSX — use react-i18next + `docs/context/fe-i18n.md`.
+
+**Bug-fix tasks:** debugger must write `docs/working/<TASK-ID>/test-gap.md`; testing agent implements every listed regression test.
