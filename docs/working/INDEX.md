@@ -16,8 +16,9 @@ Each task folder:
 | `findings.md` | Navigator output |
 | `run-log.md` | Human-readable agent/file trace |
 | `test-gap.md` | Debugger output (bug-fix tasks) — see `test-gap.template.md` |
-| `test-handoff.md` | fe/be-dev → testing agent — see `test-handoff.template.md` |
+| `be-test-handoff.md` | be-dev → be-testing-agent — see `be-test-handoff.template.md` |
+| `fe-test-handoff.md` | fe-dev → fe-testing-agent — see `fe-test-handoff.template.md` |
 
-Templates: [`plan.template.md`](plan.template.md) · [`test-gap.template.md`](test-gap.template.md) · [`test-handoff.template.md`](test-handoff.template.md)
+Templates: [`plan.template.md`](plan.template.md) · [`test-gap.template.md`](test-gap.template.md) · [`be-test-handoff.template.md`](be-test-handoff.template.md) · [`fe-test-handoff.template.md`](fe-test-handoff.template.md)
 
 Testing workflow: [`test-writing.md`](../context/test-writing.md)

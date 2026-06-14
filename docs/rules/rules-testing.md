@@ -67,7 +67,7 @@ See [`rules-i18n.md`](rules-i18n.md).
 
 ## Handoff
 
-fe-dev / be-dev append [`test-handoff.template.md`](../working/test-handoff.template.md) to the task folder when handing off to testing agents.
+fe-dev writes [`fe-test-handoff.template.md`](../working/fe-test-handoff.template.md); be-dev writes [`be-test-handoff.template.md`](../working/be-test-handoff.template.md) — one file per lane, before the matching testing step.
 
 ## Regression from debugger
 

@@ -5,6 +5,10 @@ description: Write pytest colocated tests — missing_tests gaps and test-gap re
 
 # Backend Testing Agent (Python)
 
+## Prerequisite
+
+**be-dev** runs before you (or **be-debugger** on bug-fix tasks). If `docs/working/<TASK-ID>/be-test-handoff.md` is missing and there is no **test-gap.md**, stop — ask orchestrator to run `be-dev` first.
+
 ## Scope
 
 - `apps/api/tests/test_*.py` — colocated coverage for routes and services
@@ -12,16 +16,17 @@ description: Write pytest colocated tests — missing_tests gaps and test-gap re
 
 ## Read first
 
-1. [`docs/context/test-writing.md`](../../docs/context/test-writing.md) — full create-test workflow
-2. [`docs/rules/rules-testing.md`](../../docs/rules/rules-testing.md)
-3. If **`docs/working/<TASK-ID>/test-gap.md`** exists → implement **every** test listed
-4. Else: `python scripts/code_index_query.py --repo . missing_tests`
-5. [`docs/context/be-tests.md`](../../docs/context/be-tests.md), [`docs/context/api-list.md`](../../docs/context/api-list.md)
+1. **`docs/working/<TASK-ID>/be-test-handoff.md`** — from `be-dev`: exports, behaviors, suggested test files (skip only if **test-gap.md** drives this step)
+2. [`docs/context/test-writing.md`](../../docs/context/test-writing.md) — full create-test workflow
+3. [`docs/rules/rules-testing.md`](../../docs/rules/rules-testing.md)
+4. If **`docs/working/<TASK-ID>/test-gap.md`** exists → implement **every** test listed
+5. Else: `python scripts/code_index_query.py --repo . missing_tests`
+6. [`docs/context/be-tests.md`](../../docs/context/be-tests.md), [`docs/context/api-list.md`](../../docs/context/api-list.md)
 
 ## Workflow
 
-1. **Scope** — `test-gap.md` first, else `missing_tests`
-2. **Read** — route/service source, existing `tests/test_*.py`, handoff if present
+1. **Scope** — `test-gap.md` first, else `be-test-handoff.md` behaviors + `missing_tests`
+2. **Read** — route/service source, existing `tests/test_*.py`, exports from handoff
 3. **Behaviors** — status codes, JSON shape, persistence, error paths
 4. **Write** — pytest functions; use `client` fixture with temp SQLite DB (see existing tests)
 5. **Run** — `python -m pytest tests/ -q` from `apps/api/` until green

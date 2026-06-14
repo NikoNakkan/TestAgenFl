@@ -2,7 +2,7 @@
 
 task_id: TASK-001
 goal: ""                    # one line from user
-phase: planning             # planning | executing | testing | done | blocked
+phase: planning             # planning | executing | awaiting_human | done | blocked
 current_step: 0
 plan_file: docs/working/TASK-001/plan.md
 created_at: ""
@@ -12,6 +12,7 @@ steps:
   - id: 1
     agent: navigator
     status: pending         # pending | in_progress | done | blocked | skipped
+    gate_status: pending    # pending | approved | revision_requested
     started_at: ""
     completed_at: ""
     notes: ""
@@ -19,4 +20,5 @@ steps:
   # one entry per row in plan.md — orchestrator fills from plan on first run
 
 blocker: ""                 # set when phase: blocked
-human_gate: false           # true = wait for human approval before next step
+awaiting_human: false       # true = posted checkpoint; waiting for user reply
+human_gate: true            # default ON — pause after each step for user review

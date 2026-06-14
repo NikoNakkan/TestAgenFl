@@ -231,15 +231,14 @@ Colocate: `apps/api/tests/test_<module>.py` covers routes/services in scope.
 
 ## Handoff from fe-dev / be-dev
 
-When implementation is ready for tests, append to `run-log.md` or use [`test-handoff.template.md`](../working/test-handoff.template.md):
+| Lane | Dev writes | Testing agent reads |
+|------|------------|---------------------|
+| Backend | `be-test-handoff.md` from [`be-test-handoff.template.md`](../working/be-test-handoff.template.md) | `be-testing-agent` |
+| Frontend | `fe-test-handoff.md` from [`fe-test-handoff.template.md`](../working/fe-test-handoff.template.md) | `fe-testing-agent` |
 
-- Files changed
-- New/changed exports
-- Testable behaviors (bullets)
-- i18n keys added (FE)
-- Suggested test file paths
+Full-stack tasks: **BE handoff → be-testing → FE handoff → fe-testing** (separate files; no shared handoff).
 
-Orchestrator then dispatches the testing agent.
+Orchestrator runs a human checkpoint after each dev step, then dispatches the matching testing agent.
 
 ---
 

@@ -5,6 +5,10 @@ description: Write Vitest/RTL colocated tests — missing_tests gaps, test-gap r
 
 # Frontend Testing Agent (React)
 
+## Prerequisite
+
+**fe-dev** runs before you (or **fe-debugger** on bug-fix tasks). If `docs/working/<TASK-ID>/fe-test-handoff.md` is missing and there is no **test-gap.md**, stop — ask orchestrator to run `fe-dev` first.
+
 ## Scope
 
 - `**/*.test.ts`, `**/*.test.tsx` under `apps/web-react/`
@@ -12,17 +16,18 @@ description: Write Vitest/RTL colocated tests — missing_tests gaps, test-gap r
 
 ## Read first
 
-1. [`docs/context/test-writing.md`](../../docs/context/test-writing.md) — full create-test workflow
-2. [`docs/rules/rules-testing.md`](../../docs/rules/rules-testing.md)
-3. [`docs/rules/rules-i18n.md`](../../docs/rules/rules-i18n.md) — locale-aware assertions
-4. If **`docs/working/<TASK-ID>/test-gap.md`** exists → implement **every** test listed (overrides missing_tests-only)
-5. Else: `python scripts/code_index_query.py --repo . missing_tests`
-6. [`docs/context/fe-tests.md`](../../docs/context/fe-tests.md), [`docs/context/fe-i18n.md`](../../docs/context/fe-i18n.md)
+1. **`docs/working/<TASK-ID>/fe-test-handoff.md`** — from `fe-dev`: exports, behaviors, suggested test files (skip only if **test-gap.md** drives this step)
+2. [`docs/context/test-writing.md`](../../docs/context/test-writing.md) — full create-test workflow
+3. [`docs/rules/rules-testing.md`](../../docs/rules/rules-testing.md)
+4. [`docs/rules/rules-i18n.md`](../../docs/rules/rules-i18n.md) — locale-aware assertions
+5. If **`docs/working/<TASK-ID>/test-gap.md`** exists → implement **every** test listed (overrides missing_tests-only)
+6. Else: `python scripts/code_index_query.py --repo . missing_tests`
+7. [`docs/context/fe-tests.md`](../../docs/context/fe-tests.md), [`docs/context/fe-i18n.md`](../../docs/context/fe-i18n.md)
 
 ## Workflow
 
-1. **Scope** — `test-gap.md` first, else `missing_tests`
-2. **Read** — source file, existing test sibling, handoff block in task folder if present
+1. **Scope** — `test-gap.md` first, else `fe-test-handoff.md` behaviors + `missing_tests`
+2. **Read** — source file, existing test sibling, exports from handoff
 3. **Behaviors** — list observable outcomes (render, click, API mock, error states)
 4. **Write** — colocated `*.test.tsx` / `*.test.ts`; **AAA** comments in every test
 5. **i18n** — `import i18n from '...'` + `i18n.t('namespace:key')`; never hardcode UI strings when a key exists

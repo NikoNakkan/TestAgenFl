@@ -61,6 +61,14 @@ Append to `docs/working/<TASK-ID>/findings.md`:
 - Need new i18n key: app.errors.network
 ```
 
+**Gaps** = what `fe-dev` must create. **Reuse** lists = do not duplicate — extend or wire up existing tokens, keys, and components.
+
+## Handoff to fe-dev
+
+After writing **Design findings**, stop. Tell the human: *"Step complete — return to **orchestrator** for review before `fe-dev`."*
+
+`fe-dev` implements **Gaps** and reuses everything listed above. Do not implement features yourself.
+
 ## Hard rules
 
 - No hex/rgb in component CSS — tokens in `theme.css` only

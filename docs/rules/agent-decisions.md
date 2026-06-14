@@ -145,9 +145,12 @@ Every plan must:
 ## Orchestrator
 
 - Proceed when `intake.md` has a user goal and `plan.md` exists
+- **Human checkpoint after every step** — default `human_gate: true` in `state.yaml`; set `phase: awaiting_human` until user replies **proceed** or **revise**
+- Plan approval gate: user confirms `intake.md` + `plan.md` before step 1
 - After debugger step: dispatch **testing agent** when `test-gap.md` exists (do not skip)
 - Skip or fast-complete a step when index proves nothing to do (e.g. testing step + empty `missing_tests` for scope **and** no test-gap)
 - Never ask the user to choose stack, reuse, or test policy
+- Final sign-off: user **proceed** after `flow-end-validator` before `phase: done`
 
 ---
 
@@ -158,3 +161,5 @@ Before writing code, read assigned context MDs and run `find_symbol` for names y
 After writing exports, add `## <file-path>` + `purpose` row in the correct context MD.
 
 After each implementation batch: remind or run `python scripts/code_index_refresh.py --repo .`.
+
+**When `done_when` is met:** stop — do not run the next agent. Orchestrator posts a human checkpoint; user replies **proceed** before the next step.

@@ -12,7 +12,7 @@
 | Amber rectangle `[[ ]]` | **Rules** | agent-decisions.md, rules-testing.md |
 | Green cylinder `[( )]` | **Context** | fe-components.md, api-list.md |
 | Purple cylinder `[( )]` | **Index** | graph.db, code_index_*.py |
-| Gray doc `{{ }}` | **Working artifact** | plan.md, test-gap.md, test-handoff.md |
+| Gray doc `{{ }}` | **Working artifact** | plan.md, test-gap.md, be/fe-test-handoff.md |
 | Guide `( )` in context band | **docs/context/test-writing.md** | Test creation workflow (not auto-synced) |
 
 ---
@@ -296,7 +296,8 @@ flowchart TB
     RF[[rules-frontend]]
     RTH[[rules-theming]]
     RI18N[[rules-i18n]]
-    THO[[test-handoff.template]]
+    THBE[[be-test-handoff.template]]
+    THFE[[fe-test-handoff.template]]
   end
 
   subgraph CONTEXT["Context · docs/context/"]
@@ -322,13 +323,13 @@ flowchart TB
   NAV --> FDN[fe-design-navigator]
   NAV --> BAC[be-api-contract]
   BAC --> BD[be-dev]
-  BD --> BTA[be-testing-agent]
+  BD --> BTH{{be-test-handoff.md}}
+  BTH --> BTA[be-testing-agent]
 
   NAV --> FD[fe-dev]
   FDN --> FD
-  FD --> TH{{test-handoff.md}}
-  BD --> TH
-  TH --> FTA[fe-testing-agent]
+  FD --> FTH{{fe-test-handoff.md}}
+  FTH --> FTA[fe-testing-agent]
 
   BTA --> FEV[flow-end-validator]
   FTA --> FEV
@@ -388,10 +389,10 @@ flowchart TB
 | navigator | — | INDEX + symbol MDs | query scripts |
 | fe-design-navigator | theming, i18n | fe-design-system, fe-i18n | — |
 | be-api-contract | rules-backend | api-list, types | — |
-| be-dev | rules-backend | api-list, be-services | find_symbol · writes **test-handoff.md** |
-| be-testing-agent | rules-testing | test-writing, be-tests | missing_tests |
-| fe-dev | frontend, theming, i18n | fe-*, fe-i18n | find_symbol · writes **test-handoff.md** |
-| fe-testing-agent | rules-testing, rules-i18n | test-writing, fe-tests, fe-i18n, test-handoff | missing_tests |
+| be-dev | rules-backend | api-list, be-services | find_symbol · writes **be-test-handoff.md** |
+| be-testing-agent | rules-testing | test-writing, be-tests, be-test-handoff | missing_tests |
+| fe-dev | frontend, theming, i18n | fe-*, fe-i18n | find_symbol · writes **fe-test-handoff.md** |
+| fe-testing-agent | rules-testing, rules-i18n | test-writing, fe-tests, fe-i18n, fe-test-handoff | missing_tests |
 | flow-end-validator | — | CODE-INDEX | code_index_refresh |
 
 ---

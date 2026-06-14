@@ -8,14 +8,19 @@ description: Implement React features — hooks, components, utils. Scope apps/w
 ## Scope
 `apps/web-react/**` only. Do not touch backend or contract packages.
 
+## Prerequisite (UI tasks)
+
+**fe-design-navigator** runs before you. If `docs/working/<TASK-ID>/findings.md` has no **Design findings** section, stop — ask orchestrator to run `fe-design-navigator` first.
+
 ## Read first
 1. `docs/rules/agent-decisions.md` — reuse before creating (`find_symbol`)
-2. `docs/context/INDEX.md`
-3. **`docs/context/fe-design-system.md`** — theme tokens; **base** before **extending**
-4. **`docs/rules/rules-theming.md`** — no hex/rgb outside `theme.css`
-5. **`docs/context/fe-i18n.md`** + **`docs/rules/rules-i18n.md`** — no UI string literals
-6. `docs/context/fe-utils.md`, `fe-components.md`, `fe-services.md`, `types.md`, `envs.md`
-7. `python scripts/code_index_query.py find_symbol <name>` before adding exports
+2. **`docs/working/<TASK-ID>/findings.md`** — **Design findings** section (reuse tokens, keys, components; implement **Gaps**)
+3. `docs/context/INDEX.md`
+4. **`docs/context/fe-design-system.md`** — theme tokens; **base** before **extending**
+5. **`docs/rules/rules-theming.md`** — no hex/rgb outside `theme.css`
+6. **`docs/context/fe-i18n.md`** + **`docs/rules/rules-i18n.md`** — no UI string literals
+7. `docs/context/fe-utils.md`, `fe-components.md`, `fe-services.md`, `types.md`, `envs.md`
+8. `python scripts/code_index_query.py find_symbol <name>` before adding exports
 
 ## Design rules
 - Colors/spacing → `var(--*)` from `theme.css` only
@@ -28,9 +33,15 @@ description: Implement React features — hooks, components, utils. Scope apps/w
 - New i18n key → row in `fe-i18n.md`
 - Run `python scripts/code_index_refresh.py --repo .` before finishing (must exit 0)
 
-## Handoff to testing
+## Handoff to fe-testing-agent
 
-When exports are ready for tests, append [`test-handoff.template.md`](../../docs/working/test-handoff.template.md) to `docs/working/<TASK-ID>/` (or extend `run-log.md`). Do **not** write colocated tests — that is `fe-testing-agent` unless you are fixing a one-line test yourself during debug.
+**Required** when you added or changed exports.
+
+1. Write `docs/working/<TASK-ID>/fe-test-handoff.md` from [`fe-test-handoff.template.md`](../../docs/working/fe-test-handoff.template.md) — files changed, exports, testable behaviors, suggested test files.
+2. Run `python scripts/code_index_refresh.py --repo .` (must exit 0).
+3. Stop. Tell the human: *"Step complete — return to **orchestrator** for review before `fe-testing-agent`."*
+
+Do **not** write colocated tests — that is `fe-testing-agent` (unless a one-line test fix during debug).
 
 ## Never
 - Edit `apps/api/**` or `packages/contract/**`

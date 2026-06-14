@@ -17,9 +17,15 @@ description: Implement FastAPI routes, services, domain. Scope apps/api only.
 - Add row in `docs/context/api-list.md` under `## <handler-file>`
 - Run `python scripts/code_index_refresh.py --repo .`
 
-## Handoff to testing
+## Handoff to be-testing-agent
 
-When exports are ready for tests, append [`test-handoff.template.md`](../../docs/working/test-handoff.template.md) to `docs/working/<TASK-ID>/`. Do **not** add pytest coverage — that is `be-testing-agent`.
+**Required** when you added or changed exports.
+
+1. Write `docs/working/<TASK-ID>/be-test-handoff.md` from [`be-test-handoff.template.md`](../../docs/working/be-test-handoff.template.md) — files changed, exports, testable behaviors, suggested test files.
+2. Run `python scripts/code_index_refresh.py --repo .`.
+3. Stop. Tell the human: *"Step complete — return to **orchestrator** for review before `be-testing-agent`."*
+
+Do **not** add pytest coverage — that is `be-testing-agent`.
 
 ## Never
 - Touch `apps/web-react/**` or OpenAPI without `be-api-contract`

@@ -29,6 +29,8 @@ Product/UX only. Not stack, tests, or reuse.
 
 `docs/working/<NEXT-TASK-ID>/intake.md` then `plan.md`. Plan ends with `flow-end-validator`.
 
+Post a **plan approval checkpoint** — summarize goal, acceptance, and steps; ask user to **proceed** before orchestrator runs step 1. Do not tell the user to start orchestrator until they approve.
+
 ## Never
 
 - Write source code

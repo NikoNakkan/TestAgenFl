@@ -21,11 +21,16 @@
 | 2 | be-api-contract | Define API contract (if new surfaces) | api-list.md, types.md | packages/contract/** | contract file exists |
 | 3 | be-dev | Implement routes + service | api-list.md, envs.md | apps/api/** | routes respond |
 | 4 | be-testing-agent | Tests for `missing_tests` in BE scope | be-tests.md, test-writing.md | apps/api/tests/** | no missing_tests in scope; pytest pass |
-| 5 | fe-dev | UI + hooks per goal | fe-components.md, fe-i18n.md, fe-design-system.md | apps/web-react/** | UI meets acceptance; theming + i18n rules |
+| 4b | fe-design-navigator | Design findings — tokens, i18n keys, base/extending reuse | fe-design-system.md, fe-i18n.md | read-only | findings.md has **Design findings** section |
+| 5 | fe-dev | UI + hooks per goal | findings.md (Design findings), fe-components.md, fe-i18n.md, fe-design-system.md | apps/web-react/** | UI meets acceptance; Gaps from design findings implemented |
 | 6 | fe-testing-agent | Tests for `missing_tests` in FE scope | fe-tests.md, test-writing.md, rules-i18n.md | apps/web-react/** | no missing_tests in scope; vitest pass |
 | 7 | flow-end-validator | Refresh index + validate graph↔MD + sign off | CODE-INDEX.md | scripts/**, docs/context/** | `code_index_refresh.py` exit 0; `missing_tests` empty |
 
 > Omit or fast-complete rows when [agent-decisions.md](../rules/agent-decisions.md) says scope does not need them (e.g. API-only goal → skip FE rows).
+
+**Human checkpoints:** orchestrator pauses after every step (default `human_gate: true`). User replies **proceed** before the next agent runs. Plan-agent posts the first checkpoint on `intake.md` + `plan.md`.
+
+**Full-stack testing:** `be-dev` → `be-test-handoff.md` → `be-testing-agent` → `fe-dev` → `fe-test-handoff.md` → `fe-testing-agent`. Separate handoffs; FE tests mock API (no cross-stack E2E in this PoC).
 
 ## Bug-fix variant (fix / bug / broken)
 
