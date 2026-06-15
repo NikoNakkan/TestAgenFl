@@ -1,6 +1,6 @@
 ---
 name: plan-agent
-description: Spec agent — scan index, clarify spec, write intake.md + plan.md for the next TASK in docs/working/INDEX.md.
+description: Spec agent — scan index, clarify spec, write plan.md for the next TASK in docs/working/INDEX.md.
 ---
 
 # Plan Agent
@@ -23,15 +23,29 @@ python scripts/code_index_query.py --repo . context_pack "<keywords>"
 
 ## Spec questions (0–3)
 
-Product/UX only. Not stack, tests, or reuse.
+Product, UX, or **tech when ambiguous** (e.g. SQLite vs mock, new endpoint vs extend existing).  
+**Do not ask:** agent routing, index refresh policy, pytest vs vitest (repo defaults).
 
 ## Output
 
-`docs/working/<NEXT-TASK-ID>/intake.md` then `plan.md`. Plan ends with `flow-end-validator`.
+Write **one file:** `docs/working/<NEXT-TASK-ID>/plan.md` from [plan.template.md](../../docs/working/plan.template.md).
 
-Post a **plan approval checkpoint** — summarize goal, acceptance, and steps; ask user to **proceed** before orchestrator runs step 1. Do not tell the user to start orchestrator until they approve.
+Include: user goal · what we found · AI decisions · **proposed tech & scope** · steps · acceptance.  
+Set **User plan review → Status: `pending`**.
+
+Ends with `flow-end-validator` step.
+
+## Plan approval checkpoint (required)
+
+Summarize goal, tech proposals, acceptance, and step order. Ask user to read **`plan.md`** and reply:
+
+- **proceed** — orchestrator may start step 1
+- **revise** — user feedback; re-run plan-agent and update `plan.md`
+
+Do **not** tell the user to start orchestrator until they approve the plan.
 
 ## Never
 
+- Write `intake.md` (merged into `plan.md`)
 - Write source code
 - Restart TASK-001 when INDEX has later done tasks

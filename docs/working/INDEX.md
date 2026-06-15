@@ -6,19 +6,24 @@
 | [TASK-002](TASK-002/run-log.md) | BaseButton + SQLite toggle | done | [run-log](TASK-002/run-log.md) |
 | [TASK-003](TASK-003/run-log.md) | FlowDialog + flow background | done | [run-log](TASK-003/run-log.md) |
 
-Each task folder:
+---
 
-| File | Purpose |
-|------|---------|
-| `intake.md` | User goal + AI decisions |
-| `plan.md` | Agent step table |
-| `state.yaml` | Orchestrator status + files per step |
-| `findings.md` | Navigator output |
-| `run-log.md` | Human-readable agent/file trace |
-| `test-gap.md` | Debugger output (bug-fix tasks) — see `test-gap.template.md` |
-| `be-test-handoff.md` | be-dev → be-testing-agent — see `be-test-handoff.template.md` |
-| `fe-test-handoff.md` | fe-dev → fe-testing-agent — see `fe-test-handoff.template.md` |
+## Task artifacts (per `docs/working/<TASK-ID>/`)
 
-Templates: [`plan.template.md`](plan.template.md) · [`test-gap.template.md`](test-gap.template.md) · [`be-test-handoff.template.md`](be-test-handoff.template.md) · [`fe-test-handoff.template.md`](fe-test-handoff.template.md)
+**Full guide:** [ARTIFACTS.md](ARTIFACTS.md)
+
+| File | Writer | Reader | Why (one line) |
+|------|--------|--------|----------------|
+| `plan.md` | plan-agent | you, orchestrator | Goal + decisions + tech proposals + steps — **user approves before step 1** |
+| `state.yaml` | orchestrator | orchestrator | Machine save-state |
+| `run-log.md` | orchestrator | you, plan-agent | Human audit trail |
+| `findings.md` | navigator, fe-design-navigator | fe-dev, you | Reuse/create + design findings |
+| `be-test-handoff.md` | be-dev | be-testing-agent | BE test brief |
+| `fe-test-handoff.md` | fe-dev | fe-testing-agent | FE test brief |
+| `test-gap.md` | debugger | testing agent | Bug-fix regressions |
+
+> **Legacy:** old tasks may still have `intake.md` — merged into `plan.md` for new tasks.
+
+Templates: [`plan.template.md`](plan.template.md) · [`state.template.yaml`](state.template.yaml) · [`run-log.template.md`](run-log.template.md) · [`findings.template.md`](findings.template.md) · [`be-test-handoff.template.md`](be-test-handoff.template.md) · [`fe-test-handoff.template.md`](fe-test-handoff.template.md) · [`test-gap.template.md`](test-gap.template.md)
 
 Testing workflow: [`test-writing.md`](../context/test-writing.md)

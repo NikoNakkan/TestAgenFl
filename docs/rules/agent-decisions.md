@@ -128,9 +128,8 @@ When both FE and BE are implied, order: **contract → BE → BE tests → FE �
 
 ## Plan-agent output
 
-1. `intake.md` — user goal + **what I found** + user spec answers + **AI decisions** table
-2. `plan.md` — steps with agents, context files, `done_when` (only after spec questions closed)
-3. Do **not** write application code
+1. `plan.md` — user goal + **what I found** + spec answers + **AI decisions** + **proposed tech & scope** + **user plan review** + steps + acceptance
+2. Do **not** write application code
 
 Every plan must:
 
@@ -144,9 +143,9 @@ Every plan must:
 
 ## Orchestrator
 
-- Proceed when `intake.md` has a user goal and `plan.md` exists
-- **Human checkpoint after every step** — default `human_gate: true` in `state.yaml`; set `phase: awaiting_human` until user replies **proceed** or **revise**
-- Plan approval gate: user confirms `intake.md` + `plan.md` before step 1
+- Proceed when `plan.md` exists with user goal and **User plan review → approved**
+- Plan approval gate: user reads full `plan.md` (decisions + tech proposals + steps) before step 1
+- **Human checkpoint after every step** — default `human_gate: true`; user **proceed** / **revise** / **stop**
 - After debugger step: dispatch **testing agent** when `test-gap.md` exists (do not skip)
 - Skip or fast-complete a step when index proves nothing to do (e.g. testing step + empty `missing_tests` for scope **and** no test-gap)
 - Never ask the user to choose stack, reuse, or test policy

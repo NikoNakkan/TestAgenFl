@@ -17,34 +17,7 @@ Without these files, a multi-agent run would lose:
 - **What to test** after dev agents finish (separate BE/FE lanes)
 - **What tests were missing** when a bug slipped through
 
-Each artifact has one primary job. Overlap between `intake` and `plan`, or `state.yaml` and `run-log.md`, is intentional: different audiences (why vs what, machine vs human).
-
----
-
-## `intake.md`
-
-| | |
-|---|---|
-| **Written by** | `plan-agent` |
-| **Read by** | You (first checkpoint), `orchestrator` (startup validation) |
-| **Template** | [intake.template.md](intake.template.md) |
-
-### Why it exists
-
-You only provide **one goal in plain language**. The intake records that goal **verbatim** plus every **AI decision** the system made without asking you — stack, scope, reuse, test policy, acceptance criteria.
-
-### What it handles
-
-- **User goal** — the single source of truth for *what you wanted*
-- **AI decisions table** — documents *why* this task is FE-only, full-stack, SQLite vs in-memory, etc.
-- **Acceptance checkboxes** — derived success criteria (also copied into `plan.md`)
-
-### Reason it is separate from `plan.md`
-
-- **Intake** = decisions and rationale (**why** we are doing this)
-- **Plan** = executable steps (**how** agents will do it)
-
-If someone asks *"why did we add an API?"* six months later, intake answers that. Plan only says *"run be-api-contract step 2"*.
+Each artifact has one primary job. `state.yaml` and `run-log.md` serve different audiences (machine vs human).
 
 ---
 
@@ -53,24 +26,28 @@ If someone asks *"why did we add an API?"* six months later, intake answers that
 | | |
 |---|---|
 | **Written by** | `plan-agent` |
-| **Read by** | You (first checkpoint), `orchestrator` (every step) |
+| **Read by** | **You (must approve before step 1)**, `orchestrator` (every step) |
 | **Template** | [plan.template.md](plan.template.md) |
-| **Immutable for** | `orchestrator` — wrong plan → back to `plan-agent`, not edited in place |
+| **Immutable for** | `orchestrator` — wrong plan → back to `plan-agent` |
 
 ### Why it exists
 
-Specialists are narrow. They need a **shared runbook**: which agent runs in which order, what files to read, what folder they may touch, and when the step is `done`.
+**Single planning document** (merged former `intake.md` + `plan.md`). Records why we are doing the task **and** the agent runbook. You review the **whole file** — goal, AI decisions, **proposed tech & scope**, steps — before orchestrator runs step 1.
 
 ### What it handles
 
-- **Goal** — one-line summary
-- **Acceptance** — checkboxes mapped to `done_when` on steps
-- **Steps table** — `agent`, `task`, `context_files`, `scope`, `done_when`
-- **Variants** — full-stack feature rows vs bug-fix rows (shorter path)
+- **User goal (verbatim)** — what you said
+- **What we found** — recon from index/context
+- **Spec clarifications** — your answers (0–3 questions)
+- **AI decisions** — scope, stack, reuse, tests
+- **Proposed tech & scope** — persistence, endpoints, components — **you review and revise**
+- **User plan review** — `pending` \| `approved` \| `revision_requested`
+- **Acceptance** — success checkboxes
+- **Steps** — agent table for orchestrator
 
-### Reason it exists as its own file
+### User review (required)
 
-The orchestrator executes **one row at a time**. Without `plan.md`, you would re-explain the whole pipeline on every Cursor session. Plan is the contract between planning and execution.
+Plan-agent sets **User plan review → `pending`**. Orchestrator must not start step 1 until you reply **proceed** and status is **`approved`**.
 
 ---
 
@@ -245,9 +222,7 @@ When a bug ships, the process failed twice: **the code** and **the tests**. `tes
 ```mermaid
 flowchart TD
   PA[plan-agent]
-  INT[intake.md]
   PLN[plan.md]
-  H1[You: proceed]
   OR[orchestrator]
   ST[state.yaml]
   RL[run-log.md]
@@ -261,10 +236,8 @@ flowchart TD
   DBG[debugger]
   TG[test-gap.md]
 
-  PA --> INT
   PA --> PLN
-  INT --> H1
-  PLN --> H1
+  PLN --> H1{You: proceed on plan}
   H1 --> OR
   OR --> ST
   OR --> RL
@@ -281,7 +254,6 @@ flowchart TD
 
 | File | Writer | Primary readers |
 |------|--------|-----------------|
-| `intake.md` | plan-agent | you, orchestrator |
 | `plan.md` | plan-agent | you, orchestrator |
 | `state.yaml` | orchestrator, flow-end-validator | orchestrator |
 | `run-log.md` | orchestrator, flow-end-validator | you, plan-agent |

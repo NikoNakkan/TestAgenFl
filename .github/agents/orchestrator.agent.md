@@ -15,23 +15,23 @@ Decision rules (reuse, tests, skip empty steps): [agent-decisions.md](../../docs
 
 ```
 docs/working/<TASK-ID>/
-├── intake.md          ← user goal + AI decisions (from plan-agent)
-├── plan.md            ← from plan-agent (read-only for orchestrator)
+├── plan.md            ← plan-agent: goal, decisions, tech proposals, steps (user reviews before step 1)
 ├── state.yaml         ← orchestrator owns this (status + files_written per step)
 ├── run-log.md         ← human-readable agent/file trace (update each step)
-├── findings.md        ← optional, from navigator
-├── test-gap.md        ← from fe/be-debugger on bug-fix tasks
-├── be-test-handoff.md ← required from be-dev before be-testing step
-└── fe-test-handoff.md ← required from fe-dev before fe-testing step
+├── findings.md        ← navigator + fe-design-navigator
+├── test-gap.md        ← fe/be-debugger (bug-fix)
+├── be-test-handoff.md ← be-dev before be-testing
+└── fe-test-handoff.md ← fe-dev before fe-testing
 ```
 
 ## Startup
 
-1. Confirm `docs/working/<TASK-ID>/intake.md` has a **user goal** and AI decisions filled
-2. Read `docs/working/<TASK-ID>/plan.md` (if missing → send user to **plan-agent**)
-3. If no `state.yaml`, create from [state.template.yaml](../../docs/working/state.template.yaml)
-4. Find first step with `status: pending`
-5. Tell the human: **"Run agent X for step N"** with scope + context files from plan
+1. Confirm `docs/working/<TASK-ID>/plan.md` exists with **user goal**, **AI decisions**, and **Steps** table
+2. Confirm **User plan review → Status: `approved`** (or user replied **proceed** on plan checkpoint — then set approved in `plan.md`)
+3. If `plan.md` missing → send user to **plan-agent**
+4. If no `state.yaml`, create from [state.template.yaml](../../docs/working/state.template.yaml)
+5. Find first step with `status: pending`
+6. Tell the human: **"Run agent X for step N"** with scope + context files from plan
 
 ## Skip / fast-complete
 
@@ -88,7 +88,7 @@ Edit `state.yaml` and **`run-log.md`**:
 
 | Agent | User should look at |
 |-------|---------------------|
-| plan-agent | `intake.md`, `plan.md` — goal, acceptance, step order |
+| plan-agent | `plan.md` — goal, tech proposals, acceptance, step order |
 | navigator | `findings.md` — reuse vs create |
 | fe-design-navigator | `findings.md` → **Design findings** — reuse, **Gaps** |
 | be-api-contract | `packages/contract/openapi.yaml` |
@@ -110,7 +110,11 @@ Edit `state.yaml` and **`run-log.md`**:
 
 ### Before step 1 (plan approval gate)
 
-If `plan.md` was just created and no step is `done` yet: post a checkpoint on **plan-agent output** first. User must **proceed** before dispatching step 1 (`navigator`).
+If no step is `done` yet and **User plan review → Status** is not `approved`:
+
+1. Post checkpoint: user must read **`plan.md`** (goal, AI decisions, **proposed tech & scope**, steps)
+2. User replies **proceed** → set Status to `approved` in `plan.md`, set `Reviewed at`, then dispatch step 1 (`navigator`)
+3. User replies **revise** → send back to **plan-agent**; do not create `state.yaml` steps as in_progress
 
 ### When task complete
 

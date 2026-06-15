@@ -7,6 +7,6 @@
 5. Tests: `docs/context/test-writing.md` — colocated Vitest/pytest; testing agents own test creation.
 6. Use specialist agents from `.github/agents/` — never one agent for everything.
 7. Orchestrator reads `docs/working/<TASK>/state.yaml`, `plan.md`, `run-log.md`, and `test-gap.md` (bug-fix tasks).
-8. Plan-agent is **always first**: user goal → intake.md + plan.md. Do not interview the user about stack, reuse, or tests.
+8. Plan-agent is **always first**: user goal → **`plan.md`** (user reviews and approves before orchestrator). Do not interview the user about agent routing or index policy.
 9. **Final step every task:** `flow-end-validator` — refresh + validate + sign-off. See `docs/context/CODE-INDEX.md`.
 10. Bug-fix tasks: debugger writes `test-gap.md`; testing agent implements every listed regression test.
